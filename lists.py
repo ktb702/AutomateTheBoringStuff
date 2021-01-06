@@ -1,3 +1,5 @@
+import copy
+
 languages = ['java', 'C', 'python', 'php', 'ruby', 'javascript']
 for i in range(len(languages)):
     print('Index ' + str(i) + ' of languages is: ' + languages[i])
@@ -31,3 +33,20 @@ dog.remove('boxer') # removes the first instance of 'boxer' found in the list
 dog.sort()
 print('List after sorting' + '\n' + str(dog))
 dog.sort(reverse=True) #sorts in reverse order
+
+#sorting happens in ASCII-betical order. So all upper case letters come first, then lower case.
+letters = ['A', 'a', 'B', 'b', 'D', 'Z', 'z', 'g']
+letters.sort()
+print(letters)
+letters.sort(key=str.lower) # this will sort with all lower case letters to give you true alphabetical order
+print(letters)
+
+# deep vs shallow copies
+l2 = letters #shallow copy - both lists reference the same data in memory
+l2.insert(1, 'ABC') # this changes letters also
+print(letters)
+
+l3 = copy.deepcopy(letters) #creates a deep copy - lists refer to different places in memory
+l3.insert(3, 'blah')
+print(letters)
+print(l3)
