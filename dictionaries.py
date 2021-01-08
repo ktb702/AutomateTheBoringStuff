@@ -34,3 +34,14 @@ for j in house.values():
 
 for k, v in house.items():
     print(k, v)
+
+# get method - helpful to avoid KeyError
+bedrooms = house.get('bedrooms', 0) #returns the value of 'bedrooms' or 0 if it doesn't exist.
+print('The number of bedrooms is ' + str(bedrooms))
+color = house.get('color', '')
+print('The color of the house is ' + color)
+
+# setdefault - sets a key/value pair in the dict only if the key doesn't exist already
+house.setdefault('bathrooms', 2)
+print(house)
+house.setdefault('bathrooms', 2.5) #doesn't do anything because the key/value pair is already set
