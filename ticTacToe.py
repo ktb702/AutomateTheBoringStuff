@@ -8,11 +8,46 @@ gameOver = False
 def play(turn, player, comp):
     if turn == 0: #it's the computer's turn
         # make winning move
+        if board['topL']== comp and board['topM'] == comp and board['topR']== ' ':
+            board['topR'] = comp
+        elif board['topL']== comp and board['topM'] == ' ' and board['topR']== comp:
+            board['topM'] = comp
+        elif board['topL']== ' ' and board['topM'] == comp and board['topR']== comp:
+            board['topL'] = comp
+        
+        elif board['midL']== comp and board['midM'] == comp and board['midR']== ' ':
+            board['midR'] = comp
+        elif board['midL']== comp and board['midM'] == ' ' and board['midR']== comp:
+            board['midM'] = comp
+        elif board['midL']== ' ' and board['midM'] == comp and board['midR']== comp:
+            board['midL'] = comp
         
         # block players winning move
         # move on corner
+        elif board['topL'] == ' ':
+            board['topL'] = comp
+        elif board['topR'] == ' ':
+            board['topR'] = comp
+        elif board['lowL'] == ' ':
+            board['lowL'] = comp
+        elif board['lowR'] == ' ':
+            board['lowR'] = comp
+
         # move on center
+        elif board['midM'] == ' ':
+            board['midM'] = comp
+
         # move on side
+        elif board['midL'] == ' ':
+            board['midL'] = comp
+        elif board['midR'] == ' ':
+            board['midR'] = comp
+        elif board['topM'] == ' ':
+            board['topM'] = comp
+        elif board['lowM'] == ' ':
+            board['lowM'] = comp
+
+        printBoard()
         turn = 1 # switch to the player's turn
 
     else: #it's the player's turn
@@ -41,8 +76,8 @@ def isWinner():
 
 
     #checks to see if the board is full and the game ends in a draw
-    for v in board.values():
-        if board[v] == ' ':
+    for key in board:
+        if board[key] == ' ':
             break # board is not full yet
         else:
             gameOver = True
