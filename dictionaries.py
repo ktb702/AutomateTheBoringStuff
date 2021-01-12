@@ -7,6 +7,9 @@ print('My house is located in ' + house['neighborhood'])
 # print(house[color]) #would throw a KeyError as this key does not exist in this dict
 # print(house[0]) #would throw a KeyError as values are referenced by key not by index
 
+# can create a dict with mixed keys
+me = {'Name': 'Kate', 1: [1, 2, 3, 4]} 
+
 #can find out if a key exists/does not exist in a dict 
 print('bedrooms' in house) #True
 print('bedrooms' not in house) #False
@@ -45,3 +48,12 @@ print('The color of the house is ' + color)
 house.setdefault('bathrooms', 2)
 print(house)
 house.setdefault('bathrooms', 2.5) #doesn't do anything because the key/value pair is already set
+
+# add items to a dict
+house['bathrooms'] = 2
+house['color'] = 'beige'
+print(house)
+
+# pop / popitem
+# pop() - Removes and returns an element from a dictionary having the given key. 
+# popitem() - Removes the arbitrary key-value pair from the dictionary and returns it as tuple. 
