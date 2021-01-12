@@ -44,3 +44,24 @@ print(phrase.strip('yo')) #removes the letters y & o from the beginning and end 
 
 #replace() method
 print(phrase.replace('o', '!')) #replace every 'o' in the string with a '!'
+
+#partition
+before, sep, after = 'Hello, there!'.partition(' ')
+print(before)
+print(after)
+
+#ord() and chr()
+#use these to convert to ASCII chars and back again
+print('ord: ' + str(ord('A')))
+print('chr: ' + str(chr(65)))
+
+#string formatting
+name = 'Kate'
+age = 2000
+print( 'Hello, my name is ' + name + '. I am ' + str(age) + ' years old.')
+
+#the above could be simplified to the following:
+print('My name is %s. I am %s years old.' % (name, age))
+
+#fstrings
+print(f'My name is {name}. Next year I will be {age + 1}.')
