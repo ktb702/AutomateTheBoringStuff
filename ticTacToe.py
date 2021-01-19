@@ -20,6 +20,13 @@ def compTurn(comp, player):
     elif board['midL']== ' ' and board['midM'] == comp and board['midR']== comp:
         board['midL'] = comp
     
+    elif board['lowL']== comp and board['lowM'] == comp and board['lowR']== ' ':
+        board['lowR'] = comp
+    elif board['lowL']== comp and board['lowM'] == ' ' and board['lowR']== comp:
+        board['lowM'] = comp
+    elif board['lowL']== ' ' and board['lowM'] == comp and board['lowR']== comp:
+        board['lowL'] = comp
+    
     # block players winning move
     if board['topL']== player and board['topM'] == player and board['topR']== ' ':
         board['topR'] = comp
@@ -34,6 +41,13 @@ def compTurn(comp, player):
         board['midM'] = comp
     elif board['midL']== ' ' and board['midM'] == player and board['midR']== player:
         board['midL'] = comp
+    
+    elif board['lowL']== player and board['lowM'] == player and board['lowR']== ' ':
+        board['lowR'] = comp
+    elif board['lowL']== player and board['lowM'] == ' ' and board['lowR']== player:
+        board['lowM'] = comp
+    elif board['lowL']== ' ' and board['lowM'] == player and board['lowR']== player:
+        board['lowL'] = comp
 
     # move on corner
     elif board['topL'] == ' ':
