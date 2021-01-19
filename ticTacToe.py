@@ -3,9 +3,8 @@ import random
 
 #global variables
 board = {'topL': ' ', 'topM': ' ', 'topR': ' ', 'midL': ' ', 'midM': ' ', 'midR': ' ', 'lowL': ' ', 'lowM': ' ', 'lowR': ' '}
-gameOver = False
 
-def compTurn(comp):
+def compTurn(comp, player):
     # make winning move
     if board['topL']== comp and board['topM'] == comp and board['topR']== ' ':
         board['topR'] = comp
@@ -22,6 +21,20 @@ def compTurn(comp):
         board['midL'] = comp
     
     # block players winning move
+    if board['topL']== player and board['topM'] == player and board['topR']== ' ':
+        board['topR'] = comp
+    elif board['topL']== player and board['topM'] == ' ' and board['topR']== player:
+        board['topM'] = comp
+    elif board['topL']== ' ' and board['topM'] == player and board['topR']== player:
+        board['topL'] = comp
+    
+    elif board['midL']== player and board['midM'] == player and board['midR']== ' ':
+        board['midR'] = comp
+    elif board['midL']== player and board['midM'] == ' ' and board['midR']== player:
+        board['midM'] = comp
+    elif board['midL']== ' ' and board['midM'] == player and board['midR']== player:
+        board['midL'] = comp
+
     # move on corner
     elif board['topL'] == ' ':
         board['topL'] = comp
@@ -69,6 +82,7 @@ def isWinner(let):
         (board['topR'] == let and board['midM'] == let and board['lowL'] == let)):  #possible win - topR, midM, lowL
         gameOver = True
         print('Congrats ' + let + ', you win!')
+        return gameOver
     
     else:
         #checks to see if the board is full and the game ends in a draw
@@ -79,6 +93,7 @@ def isWinner(let):
         if count == 0: #if there are no empty space then it's a draw
             gameOver = True
             print("It's a draw.")
+            return gameOver
 
 def printBoard():
     print(board['topL'] + '|' + board['topM'] + '|' + board['topR'])
@@ -88,11 +103,12 @@ def printBoard():
     print(board['lowL'] + '|' + board['lowM'] + '|' + board['lowR'])
 
 def main():
+    gameOver = False
     print('Welcome to Tic Tac Toe!')
     player = input('Would you like to be X or O?')
-    while player != 'X' or player != 'O':
-        player = input('That is not a valid selection. Please choose X or O: ')
     player = player.upper()
+    if player != 'X' and player != 'O':
+        player = input('That is not a valid selection. Please choose X or O: ')
     comp = 'X' if player != 'X' else 'O'
     print('comp is ' + comp + ', player is ' + player) #debugging
 
@@ -101,24 +117,26 @@ def main():
     if turn == 0:
         print('The computer will go first')
     else:
+
         print('You will go first')
 
     while (not gameOver):
-        printBoard()
         if turn == 0: #computer's turn
-            compTurn(comp)
+            compTurn(comp, player)
             letter = comp
             turn = 1 #switch to player's turn
         else: #player's turn
+            printBoard()
             playerTurn(player)
             letter = player
             turn = 0 #switch to computer's turn
         
         #check to see if either player won the game with the last move 
-        isWinner(letter)
+        gameOver = isWinner(letter)
     
     newGame = input('Would you like to play again? (y/n)')
-    if newGame.tolower() == 'y':
+    print()
+    if newGame == 'y': #.tolower() 
         main()
 
 if __name__ == '__main__':
