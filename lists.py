@@ -24,6 +24,14 @@ dog.insert(2, 'terrier') # places in pos 2 and moves everything else to the left
 print('List after insert')
 print(dog)
 
+# pop
+# will pop the value in the list at the index you pass as a parameter (default is -1 or last value in list)
+# this function RETURNS the value that was popped
+last_dog = dog.pop()
+print(last_dog)
+dog1 = dog.pop(1) # will pop the item at index 1, in this case 'boxer'
+print(dog1)
+
 # remove vs delete
 del dog[0] #deletes value at index 0
 dog.remove('boxer') # removes the first instance of 'boxer' found in the list
@@ -40,6 +48,8 @@ letters.sort()
 print(letters)
 letters.sort(key=str.lower) # this will sort with all lower case letters to give you true alphabetical order
 print(letters)
+# NOTE: the sort function does not return anything, it sorts in place
+# so my_sorted_list = letters.sort() would return none. Instead the original list is sorted and you can just use letters going forward.
 
 # deep vs shallow copies
 l2 = letters #shallow copy - both lists reference the same data in memory
