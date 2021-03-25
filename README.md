@@ -1,2 +1,2 @@
 # AutomateTheBoringStuff
-Exercises and projects from the book 
+Exercises and projects from the book and Udemy course.
